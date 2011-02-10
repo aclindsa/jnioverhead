@@ -21,7 +21,7 @@
 #include "jni_overhead.h"
 #include <stdio.h>
 
-#define NUM_CALLS 100000
+#define NUM_CALLS 1000000
 
 int main() {
 	int i;

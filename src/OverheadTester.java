@@ -23,7 +23,7 @@ public class OverheadTester{
 		System.loadLibrary("overhead");
 	}
 
-	private static int NUM_CALLS = 100000;
+	private static int NUM_CALLS = 1000000;
 
 	public static native void jniOverheadStart();
 	public static native long jniOverheadEnd();
