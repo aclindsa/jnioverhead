@@ -32,7 +32,7 @@ ifeq ($(shell /usr/bin/id -u), 0)
 	#fix the permissions so 'make clean' doesn't barf if not run with sudo
 	sudo chmod -R 777 results
 	echo
-	./avg.py
+	./stats.py
 else
 	echo "Please run with sudo (required for 'nice')"
 endif

@@ -23,20 +23,43 @@
 """
 
 import sys
+from math import sqrt
 
 def main():
-    print "Average for C access times: "+str(average("results/c"))+" ticks"
-    print "Average for Java access times: "+str(average("results/java"))+" ticks"
+    mean,std,mn,mx = stats("results/c")
+    print "Average time in C: "+str(mean)+" ticks (stddev: "+str(std)+", min: "+str(mn)+", max: "+str(mx)+")"
+    mean,std,mn,mx = stats("results/java")
+    print "Average time in Java: "+str(mean)+" ticks (stddev: "+str(std)+", min: "+str(mn)+", max: "+str(mx)+")"
 
-def average(filename):
+def stats(filename):
     ifile = open(filename)
-    sum = 0.0
-    num = 0
+    times = []
+    mx = 0
+    mn = -1
     for line in ifile:
-        num += 1
-        sum += int(line.strip())
+        time = int(line.strip())
+        if time > mx:
+            mx = time
+        if mn == -1 or time < mn:
+            mn = time
+        times.append(time)
     ifile.close();
-    return sum/num
+    mean,std = meanstdv(times)
+    return mean,std,mn,mx
+
+"""
+This function was found at
+http://www.phys.uu.nl/~haque/computing/WPark_recipes_in_python.html
+"""
+def meanstdv(x):
+    n, mean, std = len(x), 0, 0
+    for a in x:
+        mean = mean + a
+    mean = mean / float(n)
+    for a in x:
+        std = std + (a - mean)**2
+    std = sqrt(std / float(n-1))
+    return mean, std
 
 if __name__ == "__main__":
     main();
