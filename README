@@ -1,0 +1,44 @@
+README for JNI Overhead Tester
+Written by Aaron Lindsay <aaron.lindsay@vt.edu>, February 10, 2011
+
+Copyright (C) 2011 by Aaron Lindsay
+Redistribution of this file is permitted under the GNU Public License.
+
+
+Purpose
+=======
+
+The purpose of this test is to find the overhead of making a call to JNI versus making a native call to the same function in C.
+
+
+Usage
+=====
+
+Follow these steps to build and run the test:
+
+1. Ensure that you have the following installed
+	- sh/bash shell
+	- GNU make
+	- gcc
+	- A Java JDK (I used OpenJDK)
+	- Python
+
+2. Build the tests
+
+	a. If you are using a JDK different from OpenJDK, update the line in the Makefile that currently says the following to point to the directory which contains the JNI header (jni.h) on your operating system.
+
+		JNI_INCLUDE_DIR=/usr/lib/jvm/java-6-openjdk/include
+
+	b. Build them using GNU make. The following command will suffice:
+
+		$ make
+
+3. Run the tests
+
+Simply run (sudo is required, because the Makefile uses the 'nice' command, which requires root privileges):
+
+	$ sudo make run
+
+Update History
+==============
+Written by Aaron Lindsay <aaron.lindsay@vt.edu>, February 10, 2011
